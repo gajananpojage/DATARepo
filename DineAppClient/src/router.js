@@ -5,6 +5,7 @@ import Reconciliation from './views/Reconciliation.vue'
 import JobResults from './views/JobResults.vue'
 import DataProfiling from './views/DataProfiling.vue'
 import Validation from './views/Validation.vue'
+
 Vue.use(Router)
 
 export default new Router({
