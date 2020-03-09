@@ -1,9 +1,5 @@
 <template>
   <v-card>
-    <v-snackbar v-model="snackbar" :timeout="4000" top color="success">
-      <span>Successfully created!!.</span>
-      <v-btn color="white" flat @click="snackbar = false">Close</v-btn>
-    </v-snackbar>
     <v-app-bar app class="pink-top">
       <v-app-bar-nav-icon  @click="drawer = !drawer" style="background:#f5f5f5"></v-app-bar-nav-icon>
       <v-toolbar-title>     
@@ -33,7 +29,7 @@
         <v-icon right>exit_to_app</v-icon>
       </v-btn>
     </v-app-bar>
-    <v-navigation-drawer app  v-model="drawer" class="primary">
+    <v-navigation-drawer app  v-model="drawer" class="primary dark-bg">
       <v-layout column align-center>
         <v-flex class="mt-5">
           <v-avatar size="100">
@@ -67,7 +63,7 @@ export default {
       drawer: false,
       items: [
         { icon: 'store', text: 'Application OnBoarding', route: '/' },
-        { icon: 'create', text: 'Data Reconsilation', route: '/reconsilation' },
+        { icon: 'create', text: 'Data Reconciliation', route: '/reconciliation' },
         { icon: 'dashboard', text: 'Job Results', route: '/results' },
         { icon: 'widgets', text: 'Data Profiling', route: '/profiling' },
         { icon: 'done_outline', text: 'Data Validation', route: '/validation' }
@@ -86,5 +82,9 @@ export default {
 }
 .pink-top {
   background-color:#00857a!important
+} 
+.dark-bg .theme--light.v-sheet {
+
+   background-color: #1976d2;
 }
 </style>
