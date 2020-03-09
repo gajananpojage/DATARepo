@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Onboarding from './views/Onboarding.vue'
-import Reconsilation from './views/Reconsilation.vue'
+import Reconciliation from './views/Reconciliation.vue'
 import JobResults from './views/JobResults.vue'
 import DataProfiling from './views/DataProfiling.vue'
 import Validation from './views/Validation.vue'
@@ -17,9 +17,9 @@ export default new Router({
       component: Onboarding
     },
     {
-      path: '/reconsilation',
-      name: 'reconsilation',
-      component: Reconsilation
+      path: '/reconciliation',
+      name: 'reconciliation',
+      component: Reconciliation
     },
     {
       path: '/results',
