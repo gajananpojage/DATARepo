@@ -35,7 +35,7 @@
         </v-tooltip>
       </v-layout>
 
-      <v-card flat v-for="job in selectedJobs" :key="job.jobId">
+      <v-card flat v-for="job in selectedJobs" :key="job.jobId" @click="onClick(job.jobId)">
         <v-layout row wrap :class="`pa-3 job ${job.status}`">
           <v-flex xs12 md6>
             <div class="caption grey--text">Job Name</div>
@@ -86,6 +86,9 @@ export default {
         this.selectedJobs = job;
         console.log(this.selectedJobs);
       }
+    },
+    onClick(id){
+      console.log(id)
     }
   }
 };
