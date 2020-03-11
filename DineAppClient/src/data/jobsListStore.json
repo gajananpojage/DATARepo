@@ -1,0 +1,30 @@
+[
+  {
+    "jobId": 1001,
+    "name": "HR Data Update",
+    "sourceConnection": "ResourceConn",
+    "targetConnection": "UserDB",
+    "status": "completed"
+  },
+  {
+    "jobId": 1002,
+    "name": "Employee Data Update",
+    "sourceConnection": "UserDB",
+    "targetConnection": "TestDB",
+    "status": "failed"
+  },
+  {
+    "jobId": 1003,
+    "name": "Cleaup Temporary",
+    "sourceConnection": "TestDB",
+    "targetConnection": "UserDB",
+    "status": "completed"
+  },
+  {
+    "jobId": 1004,
+    "name": "Update Status",
+    "sourceConnection": "UserDB",
+    "targetConnection": "ResourceConn",
+    "status": "running"
+  }
+]

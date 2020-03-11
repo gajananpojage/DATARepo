@@ -1,1 +1,44 @@
-
+[
+    {
+    "id": "V101",
+    "name": "ValidationCheck",
+    "description": "THis is test",
+    "connection": "resourceConn",
+    "database": "ResourceDB",
+    "table": "Learning",
+    "validationQuery": "select * from table",
+    "label": "Latency",
+    "targetDQI": "50",
+    "threshold": "60",
+    "frequency": "3",
+    "ownerName": "Gajanan"
+   },
+   {
+    "id": "V102",
+    "name": "ValidationCustom",
+    "description": "THis is testcustom",
+    "connection": "resourceConn",
+    "database": "ResourceDB",
+    "table": "Learning",
+    "validationQuery": "select * from table",
+    "label": "Competences",
+    "targetDQI": "80",
+    "threshold": "40",
+    "frequency": "8",
+    "ownerName": "XYZ"
+   },
+   {
+    "id": "V105",
+    "name": "Resource validation",
+    "description": "THis is test",
+    "connection": "resourceConn",
+    "database": "ResourceDB",
+    "table": "Learning",
+    "validationQuery": "select * from table",
+    "label": "Uniqueness",
+    "targetDQI": "90",
+    "threshold": "70",
+    "frequency": "5",
+    "ownerName": "ABC"
+   }
+]

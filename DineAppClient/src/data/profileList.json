@@ -1,0 +1,38 @@
+[
+    {
+        "name":"userConn",
+        "database":[
+            {
+                "name":"UserDB",
+                "tables":[
+                           {"name":"PeopleSoft", "columns":["id","name","description"]},
+                           {"name":"customerProfile", "columns":["id","customerName","location"]},
+                           {"name":"resultPool", "columns":["resultId","name","creationDate"]}
+                        ]
+            }   ]        
+    },
+    {
+     "name":"resourceConn",
+     "database":[
+        {
+            "name":"Resource",
+            "tables":[
+                       {"name":"Skills", "columns":["skillId","name","details"]},
+                       {"name":"Learning", "columns":["id","grade","score"]},
+                       {"name":"Capability", "columns":["id","name","creationDate"]}
+                    ]
+        }  ]        
+    },
+    {
+     "name":"peopleConn",
+     "database":[
+        {
+            "name":"People",
+            "tables":[
+                       {"name":"Earning", "columns":["id","name","details"]},
+                       {"name":"HealthCare", "columns":["id","grade","score"]},
+                       {"name":"Education", "columns":["id","name","creationDate"]}
+                    ]
+        }   ]        
+    }
+ ]

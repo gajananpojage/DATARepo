@@ -1,0 +1,14 @@
+[
+   {
+       "name":"userConn",
+       "database":[{"name":"UserDB","tables":["PeopleSoft", "Learning", "MyHR"]}]        
+   },
+   {
+    "name":"resourceConn",
+    "database":[{"name":"ResourceDB","tables":["skills", "Learning", "Global"]}]        
+},
+{
+    "name":"peopleConn",
+    "database":[{"name":"PeopleDB","tables":["JobCategory", "Finance", "Performance"]}]        
+}
+]
