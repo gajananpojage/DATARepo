@@ -64,7 +64,6 @@ export default {
       items: [
         { icon: 'store', text: 'Application OnBoarding', route: '/' },
         { icon: 'create', text: 'Data Reconciliation', route: '/reconciliation' },
-        { icon: 'dashboard', text: 'Job Results', route: '/results' },
         { icon: 'widgets', text: 'Data Profiling', route: '/profiling' },
         { icon: 'done_outline', text: 'Data Validation', route: '/validation' }
       ],
