@@ -17,6 +17,7 @@ import CreateProfile from './components/Profile/CreateProfile';
 import ListProfile from './components/Profile/ListProfile';
 import ResultProfile from './components/Profile/ResultProfile';
 
+
 Vue.use(Router)
 
 export default new Router({
