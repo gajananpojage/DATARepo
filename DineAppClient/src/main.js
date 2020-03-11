@@ -5,9 +5,16 @@ import store from './store'
 import vuetify from './plugins/vuetify';
 import VueSweetalert2 from 'vue-sweetalert2';
 import DatetimePicker from 'vuetify-datetime-picker';
+import moment from 'moment';
+
 Vue.use(DatetimePicker);
 Vue.use(VueSweetalert2);
-//Vue.use(DatetimePicker);
+
+Vue.filter('formatDate', function (value) {
+  if (value) {
+    return moment(String(value)).format('MM/DD/YYYY hh:mm')
+  }
+})
 
 Vue.config.productionTip = false
 
