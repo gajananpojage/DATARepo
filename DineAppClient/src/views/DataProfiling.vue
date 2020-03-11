@@ -1,17 +1,28 @@
 <template>
-  <div>
-    <v-container> </v-container>
-    <v-container fluid>
-      <v-layout>Data Profiling... </v-layout>
-    </v-container>
+ <div>
+      <h3 class="subheading grey--text">Data Profiling</h3>
+    <v-tabs v-model="activeTab">
+      <v-tab v-for="tab of tabs" :key="tab.id" :to="tab.route" exact>
+        {{ tab.name }}
+      </v-tab>
+
+      <v-tab-item v-for="tab of tabs" :key="tab.id" :value="tab.route">
+        <router-view></router-view>
+      </v-tab-item>
+    </v-tabs>
   </div>
 </template>
-
 <script>
 export default {
-  computed: {},
-  methods: {}
+   data() {
+    return {
+      activeTab: `/profiling`,
+      tabs: [
+        { id: 1, name: "Create", route: `/profiling` },
+        { id: 2, name: "List", route: `/profiling/list` },
+        { id: 3, name: "Result", route: `/profiling/result` }
+      ]
+    };
+  }
 };
 </script>
-
-<style></style>
