@@ -1,10 +1,21 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Onboarding from './views/Onboarding.vue'
-import Reconciliation from './views/Reconciliation.vue'
-import JobResults from './views/JobResults.vue'
-import DataProfiling from './views/DataProfiling.vue'
-import Validation from './views/Validation.vue'
+import Onboarding from './views/Onboarding.vue';
+
+import Reconciliation from './views/Reconciliation.vue';
+import CreateJob from './components/Job/CreateJob';
+import ListJob from './components/Job/ListJob';
+import ResultJob from './components/Job/ResultJob';
+
+import Validation from './views/Validation.vue';
+import CreateValidation from './components/Validation/CreateValidation';
+import ListValidation from './components/Validation/ListValidation';
+import ResultValidation from './components/Validation/ResultValidation';
+
+import DataProfiling from './views/DataProfiling.vue';
+import CreateProfile from './components/Profile/CreateProfile';
+import ListProfile from './components/Profile/ListProfile';
+import ResultProfile from './components/Profile/ResultProfile';
 
 Vue.use(Router)
 
@@ -20,22 +31,59 @@ export default new Router({
     {
       path: '/reconciliation',
       name: 'reconciliation',
-      component: Reconciliation
-    },
-    {
-      path: '/results',
-      name: 'results',
-      component: JobResults
+      component: Reconciliation,
+      children: [
+        {
+          path: "",
+          component: CreateJob
+        },
+        {
+          path: "list",
+          component: ListJob
+        },
+        {
+          path: "result",
+          component: ResultJob
+        }
+      ]
     },
     {
       path: '/profiling',      
       name: 'profiling',
-      component: DataProfiling
+      component: DataProfiling,
+      children: [
+        {
+          path: "",
+          component: CreateProfile
+        },
+        {
+          path: "list",
+          component: ListProfile
+        },
+        {
+          path: "result",
+          component: ResultProfile
+        }
+      ]
     },
     {
       path: '/validation',
       name: 'validation',
-      component: Validation
+      component: Validation,
+      children: [
+        {
+          path: "",
+          component: CreateValidation
+        },
+        {
+          path: "list",
+          component: ListValidation
+        },
+        {
+          path: "result",
+          component: ResultValidation
+        }
+      ]
     }
     ]
 })
