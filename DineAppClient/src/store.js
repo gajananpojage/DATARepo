@@ -59,7 +59,7 @@ const actions = {
 // mutations
 const mutations = {
   [types.ADD_JOB](state, { job }) {
-      state.allJobs.push(job)
+      state.allJobs.unshift(job)
     },
     incrementJobId(state) {
       state.jobId++
@@ -74,10 +74,10 @@ const mutations = {
       state.allProfiles=profiles;
     },
     addValidation(state, obj) {
-      state.allValidationRules.push(obj)
+      state.allValidationRules.unshift(obj)
     },    
     addProfile(state, obj) {
-      state.allProfiles.push(obj)
+      state.allProfiles.unshift(obj)
     },
     setActiveItem(state,value) {
       state.activeItemId=value;
