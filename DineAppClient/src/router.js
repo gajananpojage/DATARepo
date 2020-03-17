@@ -16,6 +16,8 @@ import DataProfiling from './views/DataProfiling.vue';
 import CreateProfile from './components/Profile/CreateProfile';
 import ListProfile from './components/Profile/ListProfile';
 import ResultProfile from './components/Profile/ResultProfile';
+import Login from "./views/Login";
+import Approval from "./views/Approval";
 
 
 Vue.use(Router)
@@ -26,6 +28,16 @@ export default new Router({
   routes: [
     {
       path: '/',
+      name: 'login',
+      component: Login
+    },
+    {
+      path: '/approval',
+      name: 'approval',
+      component: Approval
+    },
+    {
+      path: '/onboarding',
       name: 'onboarding',
       component: Onboarding
     },
@@ -49,7 +61,7 @@ export default new Router({
       ]
     },
     {
-      path: '/profiling',      
+      path: '/profiling',
       name: 'profiling',
       component: DataProfiling,
       children: [
@@ -85,6 +97,6 @@ export default new Router({
           component: ResultValidation
         }
       ]
-    }
+    },
     ]
 })
