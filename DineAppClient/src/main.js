@@ -17,6 +17,7 @@ Vue.filter('formatDate', function (value) {
 })
 
 Vue.config.productionTip = false
+export const bus = new Vue();
 
 new Vue({
   router,
