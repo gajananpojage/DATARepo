@@ -1,11 +1,29 @@
 <template>
   <v-card>
     <v-app-bar app class="pink-top">
-      <v-app-bar-nav-icon  @click="drawer = !drawer" style="background:#f5f5f5"></v-app-bar-nav-icon>
-      <v-toolbar-title>     
+      <v-app-bar-nav-icon  @click="drawer = !drawer" style="background:#f5f5f5" v-if="loggedIn && loggedUser === 'admin'"></v-app-bar-nav-icon>
+        <!--<v-spacer class="white&#45;&#45;text" align="center">
+        <v-toolbar-title v-if="loggedIn && $route.path === '/onboarding'">
+          Application OnBoarding
        </v-toolbar-title>
+        <v-toolbar-title v-if="loggedIn && $route.path === '/reconciliation'">
+            Data Reconciliation
+       </v-toolbar-title>
+        <v-toolbar-title v-if="loggedIn && $route.path === '/profiling'">
+            Data Profiling
+       </v-toolbar-title>
+        <v-toolbar-title v-if="loggedIn && $route.path === '/validation'">
+            Data Validation
+       </v-toolbar-title>
+        <v-toolbar-title v-if="loggedIn && $route.path === '/approval'">
+          Data Approval
+       </v-toolbar-title>
+        </v-spacer>-->
+        <!--<v-toolbar-title v-if="loggedIn && $route.path === ''">
+          Data Viewer
+       </v-toolbar-title>-->
        <v-spacer></v-spacer>
-   <v-menu offset-y>
+   <v-menu offset-y v-if="loggedIn && loggedUser === 'admin'">
       <template v-slot:activator="{ on }">
         <v-btn text color="white"
           v-on="on" >
@@ -24,12 +42,12 @@
       </v-list>
     </v-menu>
 
-      <v-btn text color="white">
+      <v-btn text color="white" v-if="loggedIn" @click="logout">
         <span>Sign Out</span>
         <v-icon right>exit_to_app</v-icon>
       </v-btn>
     </v-app-bar>
-    <v-navigation-drawer app  v-model="drawer" class="primary dark-bg">
+    <v-navigation-drawer v-if="loggedIn && loggedUser === 'admin'" app  v-model="drawer" class="primary dark-bg">
       <v-layout column align-center>
         <v-flex class="mt-5">
           <v-avatar size="100">
@@ -56,22 +74,52 @@
 </template>
 
 <script>
+    import { bus } from '../main';
 export default {
-  components: {  },
+  components: { },
   data() {
     return {
+        loggedIn: false,
+        loggedUser: null,
       drawer: false,
       items: [
-        { icon: 'store', text: 'Application OnBoarding', route: '/' },
+        { icon: 'store', text: 'Application OnBoarding', route: '/onboarding' },
         { icon: 'create', text: 'Data Reconciliation', route: '/reconciliation' },
         { icon: 'widgets', text: 'Data Profiling', route: '/profiling' },
         { icon: 'done_outline', text: 'Data Validation', route: '/validation' }
       ],
+        headerText: '',
       snackbar: false
     }
   },
    computed: {
-  }
+   },
+   async mounted() {
+        /*this.$route.path === '/onboarding' ? this.headerText = 'Application OnBoarding' :
+            this.$route.path === '/reconciliation' ? this.headerText = 'Data Reconciliation' :
+                this.$route.path === '/profiling' ? this.headerText = 'Data Profiling' :
+                    this.$route.path === '/validation' ? this.headerText = 'Data Validation' :
+                        this.$route.path === '/approval' ? this.headerText = 'Data Approver' : this.headerText = 'Data Viewer' ;*/
+    },
+    created() {
+            bus.$on('loggedIn', (data) => {
+                console.log(data);
+                this.loggedIn = data;
+            });
+            bus.$on('loggedUser', (data) => {
+                console.log(data);
+                this.loggedUser = data;
+            });
+            this.loggedIn = localStorage.getItem('loggedIn');
+            this.loggedUser = localStorage.getItem('loggedUser');
+    },
+    methods: {
+      logout() {
+          localStorage.removeItem('loggedIn');
+          this.loggedIn = false;
+          this.$router.push('/');
+      }
+    }
 }
 </script>
 
@@ -81,7 +129,7 @@ export default {
 }
 .pink-top {
   background-color:#00857a!important
-} 
+}
 .dark-bg .theme--light.v-sheet {
 
    background-color: #1976d2;
