@@ -1,8 +1,8 @@
 <template>
   <v-card>
     <v-app-bar app class="pink-top">
-      <v-app-bar-nav-icon  @click="drawer = !drawer" style="background:#f5f5f5" v-if="loggedIn && loggedUser === 'admin'"></v-app-bar-nav-icon>
-        <!--<v-spacer class="white&#45;&#45;text" align="center">
+      <v-app-bar-nav-icon  @click="drawer = !drawer" style="background:#f5f5f5"  v-if="loggedIn && loggedUser === 'admin'"></v-app-bar-nav-icon>
+       <!--<v-spacer class="white&#45;&#45;text" align="center">
         <v-toolbar-title v-if="loggedIn && $route.path === '/onboarding'">
           Application OnBoarding
        </v-toolbar-title>
@@ -76,11 +76,11 @@
 <script>
     import { bus } from '../main';
 export default {
-  components: { },
+  components: {  },
   data() {
     return {
-        loggedIn: false,
-        loggedUser: null,
+      loggedIn: false,
+      loggedUser: null,
       drawer: false,
       items: [
         { icon: 'store', text: 'Application OnBoarding', route: '/onboarding' },
@@ -88,13 +88,13 @@ export default {
         { icon: 'widgets', text: 'Data Profiling', route: '/profiling' },
         { icon: 'done_outline', text: 'Data Validation', route: '/validation' }
       ],
-        headerText: '',
+       headerText: '',
       snackbar: false
     }
   },
    computed: {
-   },
-   async mounted() {
+  },
+    async mounted() {
         /*this.$route.path === '/onboarding' ? this.headerText = 'Application OnBoarding' :
             this.$route.path === '/reconciliation' ? this.headerText = 'Data Reconciliation' :
                 this.$route.path === '/profiling' ? this.headerText = 'Data Profiling' :
@@ -129,7 +129,7 @@ export default {
 }
 .pink-top {
   background-color:#00857a!important
-}
+} 
 .dark-bg .theme--light.v-sheet {
 
    background-color: #1976d2;
