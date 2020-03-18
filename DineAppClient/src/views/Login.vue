@@ -98,5 +98,4 @@
     .center-align {
         margin-left: 58px;
     }
-
 </style>
