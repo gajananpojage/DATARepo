@@ -1,0 +1,38 @@
+[
+    {
+        "name":"Hive RDS",
+        "database":[
+            {
+                "name":"Hive DB",
+                "tables":[
+                           {"name":"PeopleSoft", "columns":["id","name","description"]},
+                           {"name":"customerProfile", "columns":["id","customerName","location"]},
+                           {"name":"resultPool", "columns":["resultId","name","creationDate"]}
+                        ]
+            }   ]        
+    },
+    {
+     "name":"Hive Test RDS ",
+     "database":[
+        {
+            "name":"Test DB",
+            "tables":[
+                       {"name":"Skills", "columns":["skillId","name","details"]},
+                       {"name":"Learning", "columns":["id","grade","score"]},
+                       {"name":"Capability", "columns":["id","name","creationDate"]}
+                    ]
+        }  ]        
+    },
+    {
+     "name":"ADLS RDS",
+     "database":[
+        {
+            "name":"ADLS DB",
+            "tables":[
+                       {"name":"Earning", "columns":["id","name","details"]},
+                       {"name":"HealthCare", "columns":["id","grade","score"]},
+                       {"name":"Education", "columns":["id","name","creationDate"]}
+                    ]
+        }   ]        
+    }
+ ]
