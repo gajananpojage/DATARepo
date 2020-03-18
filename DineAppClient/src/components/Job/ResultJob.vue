@@ -25,7 +25,7 @@ export default {
   },
   async mounted() {
     let id = this.$store.state.activeItemId;
-    this.selection = this.$store.state.allJobs.filter(item => item.jobId == id);
+    this.selection = this.$store.state.allJobs.filter(item => item.JobId == id);
   },
   beforeDestroy() {
     this.$store.dispatch("unsetActiveItem");
