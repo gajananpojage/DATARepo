@@ -15,13 +15,15 @@ const state = {
   allJobs: [],
   allValidationRules: [],
   allProfiles: [],
-  activeItemId:''
+  activeItemId:'',
+  allConnections: []
 }
 // getters
 const getters = {
   allJobs: state => state.allJobs,
   allValidationRules: state => state.allValidationRules,
   allProfiles: state => state.allProfiles,
+  allConnections: state=>state.allConnections
 }
 // actions
 const actions = {
@@ -53,6 +55,12 @@ const actions = {
   },
   unsetActiveItem(context){
     context.commit('unsetActiveItem')
+  }, 
+  setConnections(context){
+    context.commit('setConnections');
+  },
+  addConnection({commit},value){
+    commit('addConnection',value)
   }
 }
 
@@ -84,6 +92,12 @@ const mutations = {
     },
     unsetActiveItem(state){
       state.activeItemId= '';
+    },
+    setConnections(state) {
+      state.allConnections=["Hive RDS", "ADLS RDS"];
+    },
+    addConnection(state,obj){
+      state.allConnections.unshift(obj)
     }
   }
 // one store for entire application
