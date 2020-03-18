@@ -18,12 +18,12 @@
           <v-select
             :items="optionValues"
             label="Filter Value:"
-            item-text="name"
+            :item-text="optionText"
             item-value="id"
             @change="onValidationChanged"
             dense
             outlined
-          ></v-select></v-col><v-col class="d-flex" cols="2" sm="1"><v-btn text @click="clearFilter" class="success mx-0 mt-3"
+          ></v-select></v-col><v-col class="d-flex" cols="2" sm="1"><v-btn text @click="clearFilter" class="success mx-0 mt-1"
             >Reset</v-btn
           ></v-col>
           
@@ -31,7 +31,7 @@
       <v-layout row justify-start class="mb-3">
         <v-tooltip top>
           <template v-slot:activator="{ on }">
-            <v-btn small text color="grey" @click="sortBy('name')" v-on="on">
+            <v-btn small text color="grey" @click="sortBy('Rule Name')" v-on="on">
               <v-icon small left>queue</v-icon>
               <span class="caption ">By Rule Name</span>
             </v-btn>
@@ -40,7 +40,7 @@
         </v-tooltip>
         <v-tooltip top>
           <template v-slot:activator="{ on }">
-            <v-btn small text color="grey" @click="sortBy('label')" v-on="on">
+            <v-btn small text color="grey" @click="sortBy('Label')" v-on="on">
               <v-icon small left>sort</v-icon>
               <span class="caption ">By Label</span>
             </v-btn>
@@ -50,27 +50,27 @@
       </v-layout>
 
       <v-card flat v-for="validation in selectedValidation" :key="validation.id" @click="onClick(validation.id)">
-        <v-layout row wrap :class="`pa-3 listItem ${validation.label}`">
+        <v-layout row wrap :class="`pa-3 listItem ${validation.Label}`">
+          <v-flex xs6 sm4 md3>
+            <div class="caption grey--text">Application Name</div>
+            <div>{{ validation["Application Name"] }}</div>
+          </v-flex>
           <v-flex xs6 sm4 md3>
             <div class="caption grey--text">Rule Name</div>
-            <div>{{ validation.name }}</div>
+            <div>{{ validation["Rule Name"] }}</div>
           </v-flex>
           <v-flex xs6 sm4 md2>
-            <div class="caption grey--text">Connection</div>
-            <div>{{ validation.connection }}</div>
+            <div class="caption grey--text">Rule Connection</div>
+            <div>{{ validation["Rule Connection"] }}</div>
           </v-flex>
           <v-flex xs6 sm4 md2>
-            <div class="caption grey--text">Owner</div>
-            <div>{{ validation.ownerName }}</div>
-          </v-flex>
-          <v-flex xs6 sm4 md2>
-            <div class="caption grey--text">Label</div>
-            <div>{{ validation.label }}</div>
+            <div class="caption grey--text">Rule Owner</div>
+            <div>{{ validation["Rule Owner"] }}</div>
           </v-flex>
           <v-flex xs2 sm4 md2>
             <div class="right">
-              <v-chip small :class="`${validation.label} white--text my-2 caption`">{{
-                validation.label
+              <v-chip small :class="`${validation.Label} white--text my-2 caption`">{{
+                validation.Label
               }}</v-chip>
             </div>
           </v-flex>
@@ -92,6 +92,7 @@ export default {
                   {id:"label3" ,name:"Competences"},{id:"label4" ,name:"Accuracy"}],
       optionValues: [],
       group:'',
+      optionText:'',
     };
   },
   async mounted() {
@@ -106,7 +107,7 @@ export default {
       let validation=[];
       if (id.indexOf("label")>-1) {
         let labelValue=await this.labelList.find((item)=>item.id==id);
-        validation = await this.validationList.filter(p => p.label === labelValue.name);
+        validation = await this.validationList.filter(p => p.Label === labelValue.name);
       } else {
         validation = await this.validationList.filter(p => p.id === id);       
 
@@ -119,8 +120,10 @@ export default {
     },
     onGroupChanged(groupName) {
        if (groupName=="Label") {
+       this.optionText="name"; 
        this.optionValues= this.labelList
       } else {
+        this.optionText="Rule Name"; 
         this.optionValues = this.validationList;
       }
     },
