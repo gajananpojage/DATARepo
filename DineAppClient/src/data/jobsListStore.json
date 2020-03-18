@@ -1,30 +1,44 @@
 [
   {
-    "jobId": 1001,
-    "name": "HR Data Update",
-    "sourceConnection": "ResourceConn",
-    "targetConnection": "UserDB",
-    "status": "completed"
+    "JobId": 1001,
+    "Application Name": "Read Data Store",
+    "Rule Name": "BCDB Reconciliation",
+    "Rule Description": "This rule reconciles the data between on premise BCDB & Azure BCDB",
+    "Rule Owner": "abc@ml.com",
+    "Source Connection": "Hive RDS",
+    "Target Connection": "ADLS RDS",
+    "Source Query": "select column_name from table name where", 
+    "Target Query": "select column_name from table name where",
+    "Status": "completed",
+    "Schedule":"3 PM, Retry every 1 hour for 4 hours",
+    "Alert": "Service Now"
   },
   {
-    "jobId": 1002,
-    "name": "Employee Data Update",
-    "sourceConnection": "UserDB",
-    "targetConnection": "TestDB",
-    "status": "failed"
+    "JobId": 1002,
+    "Application Name": "Reconciliation Read Data",
+    "Rule Name": "Reconciliation Test",
+    "Rule Description": "This rule for testing data reconciliation",
+    "Rule Owner": "xyz@ml.com",
+    "Source Connection": "ADLS RDS",
+    "Target Connection": "Hive RDS",
+    "Source Query": "select column_name from table name where", 
+    "Target Query": "select column_name from table name where",
+    "Status": "failed",
+    "Schedule":"5 PM, Retry every 1 hour for 4 hours",
+    "Alert": "Email"
   },
   {
-    "jobId": 1003,
-    "name": "Cleaup Temporary",
-    "sourceConnection": "TestDB",
-    "targetConnection": "UserDB",
-    "status": "completed"
-  },
-  {
-    "jobId": 1004,
-    "name": "Update Status",
-    "sourceConnection": "UserDB",
-    "targetConnection": "ResourceConn",
-    "status": "running"
+    "JobId": 1003,
+    "Application Name": "DataApp",
+    "Rule Name": "Reconciliation Rule",
+    "Rule Description": "descr datareconciliation",
+    "Rule Owner": "xyz@ml.com",
+    "Source Connection": "ADLS RDS",
+    "Target Connection": "Hive RDS",
+    "Source Query": "select column_name from table name where", 
+    "Target Query": "select column_name from table name where",
+    "Status": "running",
+    "Schedule":"5 PM, Retry every 1 hour for 4 hours",
+    "Alert": "Email"
   }
 ]
