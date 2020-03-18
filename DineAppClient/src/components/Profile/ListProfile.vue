@@ -18,12 +18,12 @@
           <v-select
             :items="optionValues"
             label="Filter Value:"
-            item-text="name"
+            :item-text="optionText"
             item-value="id"
             @change="onProfileChanged"
             dense
             outlined
-          ></v-select></v-col><v-col class="d-flex" cols="2" sm="1"><v-btn text @click="clearFilter" class="success mx-0 mt-3"
+          ></v-select></v-col><v-col class="d-flex" cols="2" sm="1"><v-btn text @click="clearFilter" class="success mx-0 mt-1"
             >Reset</v-btn
           ></v-col>
           
@@ -31,7 +31,7 @@
       <v-layout row justify-start class="mb-3">
         <v-tooltip top>
           <template v-slot:activator="{ on }">
-            <v-btn small text color="grey" @click="sortBy('name')" v-on="on">
+            <v-btn small text color="grey" @click="sortBy('Rule Name')" v-on="on">
               <v-icon small left>queue</v-icon>
               <span class="caption ">By Rule Name</span>
             </v-btn>
@@ -40,7 +40,7 @@
         </v-tooltip>
         <v-tooltip top>
           <template v-slot:activator="{ on }">
-            <v-btn small text color="grey" @click="sortBy('profileGroup')" v-on="on">
+            <v-btn small text color="grey" @click="sortBy('Profile Group')" v-on="on">
               <v-icon small left>sort</v-icon>
               <span class="caption ">By Level</span>
             </v-btn>
@@ -50,22 +50,26 @@
       </v-layout>
 
       <v-card flat v-for="profile in selectedProfile" :key="profile.id" @click="onClick(profile.id)">
-        <v-layout row wrap :class="`pa-3 listItem ${profile.profileGroup}`">
+        <v-layout row wrap :class="`pa-3 listItem ${profile['Profile Group']}`">
+          <v-flex xs6 sm4 md3>
+            <div class="caption grey--text">Application Name</div>
+            <div>{{ profile["Application Name"] }}</div>
+          </v-flex>
           <v-flex xs6 sm4 md3>
             <div class="caption grey--text">Rule Name</div>
-            <div>{{ profile.name }}</div>
+            <div>{{ profile["Rule Name"] }}</div>
           </v-flex>
           <v-flex xs6 sm4 md2>
             <div class="caption grey--text">Connection</div>
-            <div>{{ profile.connection }}</div>
+            <div>{{ profile.Connection }}</div>
           </v-flex>
           <v-flex xs6 sm4 md2>
-            <div class="caption grey--text">Owner</div>
-            <div>{{ profile.ownerName }}</div>
+            <div class="caption grey--text">Rule Owner</div>
+            <div>{{ profile["Rule Owner"] }}</div>
           </v-flex>
           <v-flex xs6 sm4 md2>
             <div class="caption grey--text">Level</div>
-            <div>{{ profile.profileGroup }}</div>
+            <div>{{ profile["Profile Group"]}}</div>
           </v-flex>
            </v-layout>
         <v-divider></v-divider>
@@ -85,6 +89,7 @@ export default {
                   {id:"label3" ,name:"Column Based Profile"},{id:"label4" ,name:"File Based Profile"}],
       optionValues: [],
       group:'',
+      optionText:'',
     };
   },
   async mounted() {
@@ -100,7 +105,7 @@ export default {
       let profile=[];
       if (id.indexOf("label")>-1) {
         let labelValue=await this.labelList.find((item)=>item.id==id);
-        profile = await this.profileList.filter(p => p.profileGroup === labelValue.name);
+        profile = await this.profileList.filter(p => p["Profile Group"] === labelValue.name);
       } else {
         profile = await this.profileList.filter(p => p.id === id);       
 
@@ -113,8 +118,11 @@ export default {
     },
     onGroupChanged(groupName) {
        if (groupName=="Level") {
-       this.optionValues= this.labelList
+       this.optionText="name"  
+       this.optionValues= this.labelList;
+       console.log(this.optionValues);
       } else {
+        this.optionText="Rule Name";  
         this.optionValues = this.profileList;
       }
     },
