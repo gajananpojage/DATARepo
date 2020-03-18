@@ -1,6 +1,6 @@
 <template>
   <v-app class="my-app">
-    <Navbar/>
+    <Navbar />
     <v-content>
       <v-container fluid>
         <router-view></router-view>
@@ -14,7 +14,7 @@ import Navbar from "./components/Navbar";
 import { bus } from './main'
 export default {
   name: "App",
-  components: { Navbar, },
+  components: { Navbar },
   data: () => ({
     loggedIn: false
   }),
@@ -26,11 +26,13 @@ export default {
       this.loggedIn = data;
     })
     /* Set Initial Some Default Recordsfrom JSON for display in List*/
+    this.$store.dispatch("setConnections");
     this.$store.dispatch("setJobs");
     this.$store.dispatch("setValidations");
-    this.$store.dispatch("setProfiles");
+    this.$store.dispatch("setProfiles");   
+    
   },
-  mounted() {
+    mounted() {
     // eslint-disable-next-line no-unused-vars
     window.onpopstate = event => {
       console.log(localStorage.getItem('loggedUser'));
