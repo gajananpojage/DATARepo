@@ -20,7 +20,8 @@ export default {
       tabs: [
         { id: 1, name: "Create", route: `/reconciliation` },
         { id: 2, name: "List", route: `/reconciliation/list` },
-        { id: 3, name: "Result", route: `/reconciliation/result` }
+        { id: 3, name: "Rule Info", route: `/reconciliation/result` },
+        { id: 4, name: "Output", route: `/reconciliation/output` }
       ]
     };
   }
