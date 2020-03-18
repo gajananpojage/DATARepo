@@ -20,7 +20,8 @@ export default {
       tabs: [
         { id: 1, name: "Create", route: `/validation` },
         { id: 2, name: "List", route: `/validation/list` },
-        { id: 3, name: "Result", route: `/validation/result` }
+        { id: 3, name: "Rule Info", route: `/validation/result` },
+        { id: 4, name: "Output", route: `/validation/output` }
       ]
     };
   }
