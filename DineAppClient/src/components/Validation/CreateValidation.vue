@@ -5,6 +5,15 @@
         <v-row>
           <v-col cols="10">
             <v-text-field
+              v-model="appName"
+              label="Application Name: "
+              required
+            ></v-text-field>
+          </v-col>
+        </v-row>
+        <v-row>
+          <v-col cols="10">
+            <v-text-field
               v-model="ruleName"
               label="Rule Name:"
               required
@@ -26,7 +35,7 @@
           </v-col>
         </v-row>
         <v-row>
-          <v-col cols="10">
+          <v-col cols="8">
             <v-select
               :items="connectionList"
               v-model="connection"
@@ -34,9 +43,11 @@
               @change="onConnectionChange"
             ></v-select>
           </v-col>
+          <v-col cols="1">
+            <Popup />
+          </v-col>
           <v-col cols="2">
-            <v-btn text @click="snackbar = true" class="primary mt-2 btn"
-              >Test</v-btn
+            <v-btn text @click="snackbar = true" class="primary mx-2 btn btn-text">Test</v-btn
             ><v-snackbar v-model="snackbar">
               {{ connectionText }}
               <v-btn color="green" text @click="snackbar = false">
@@ -50,77 +61,93 @@
             >Fetch List</v-btn
           ></v-row
         >
-        <div v-if="dataBaseList.length>0">
-        <v-row>
-          <v-col cols="5">
-            <v-select 
-              :items="dataBaseList"
-              v-model="database"
-              label="Database/File:"
-              @change="onDBChange"
-            ></v-select>
-          </v-col>
-          <v-col cols="5">
-            <v-select
-              :items="tableNames"
-              v-model="table"
-              label="Table:"
-            ></v-select>
-          </v-col>
-        </v-row>
-        <v-row>
-          <v-col cols="10">
-            <v-textarea
-              clearable
-              name="validation-query"
-              label="Data Validation Query:"
-              value=" "
-              no-resize
-              rows="1"
-              clear-icon="cancel"
-              v-model="validationQuery"
-            ></v-textarea
-          ></v-col>
-        </v-row>
-        <v-row>
-          <v-col cols="5">
-            <v-select :items="labelList" v-model="validationLabel" label="Label:"></v-select
-          ></v-col>
+        <div v-if="dataBaseList.length > 0">
+          <v-row>
             <v-col cols="5">
-            <v-text-field
-              v-model="target"
-              label="Target DQI:"
-              required
-            ></v-text-field>
-          </v-col>
-        </v-row>
-        <v-row>
-        
-          <v-col cols="5">
-            <v-text-field
-              v-model="threshold"
-              label="Threshold:"
-              required
-            ></v-text-field>
-          </v-col>
-          <v-col cols="5">
-           Frequency:<timeselector v-model="frequency" :value="time"></timeselector>
-          </v-col>
-        </v-row>
-        <v-row>
-          <v-col cols="10">
-            <v-text-field
-              v-model="ownerName"
-              label="Owner:"
-              required
-            ></v-text-field>
-          </v-col>
-        </v-row>
-        <v-row>
-          <v-btn text @click="createJob" class="success mx-0 mt-3"
-            >Create</v-btn
-          ></v-row
-        >
+              <v-select
+                :items="dataBaseList"
+                v-model="database"
+                label="Database/File:"
+                @change="onDBChange"
+              ></v-select>
+            </v-col>
+            <v-col cols="5">
+              <v-select
+                :items="tableNames"
+                v-model="table"
+                label="Table:"
+              ></v-select>
+            </v-col>
+          </v-row>
+          <v-row>
+            <v-col cols="10">
+              <v-textarea
+                clearable
+                name="validation-query"
+                label="Data Validation Query:"
+                value=" "
+                no-resize
+                rows="1"
+                clear-icon="cancel"
+                v-model="validationQuery"
+              ></v-textarea
+            ></v-col>
+          </v-row>
+          <v-row>
+            <v-col cols="5">
+              <v-select
+                :items="labelList"
+                v-model="validationLabel"
+                label="Label:"
+              ></v-select
+            ></v-col>
+            <v-col cols="5">
+              <v-text-field
+                v-model="target"
+                label="Target DQI:"
+                type="number"
+                required
+              ></v-text-field>
+            </v-col>
+          </v-row>
+          <v-row>
+            <v-col cols="5">
+              <v-text-field
+                v-model="threshold"
+                label="Threshold:"
+                type="number"
+                required
+              ></v-text-field>
+            </v-col>
+            <v-col cols="5">
+              <Schedule
+                displayLabel="Frequency"
+                @scheduleCreated="addSchedule"
+                :scheduleValue="frequency"
+              />
+            </v-col>
+          </v-row>
+          <v-row>
+            <v-col cols="5">
+              <v-text-field
+                v-model="ownerName"
+                label="Owner:"
+                required
+              ></v-text-field>
+            </v-col>
+            <v-col cols="5">
+              <v-select
+                :items="alertItems"
+                v-model="alert"
+                label="Send Notification:"
+              ></v-select>
+            </v-col>
+          </v-row>
+          <v-row>
+            <v-btn text @click="createJob" class="success mx-0 mt-3"
+              >Create</v-btn
+            ></v-row
+          >
         </div>
       </v-form>
     </v-container>
@@ -128,68 +155,85 @@
 </template>
 
 <script>
-import connectList from '../../data/connectList.json';
-import Timeselector from 'vue-timeselector';
+import { mapState } from "vuex";
+import connectList from "../../data/dbConnectionDetails.json";
+import Popup from "../../components/ConnPopup";
+import Schedule from "../../components/Schedule";
 export default {
   data: () => ({
-    connectionList: ["userConn", "resourceConn", "peopleConn"],
-    labelList: ["Latency","Uniqueness","Competences","Accuracy"],
+    labelList: ["Latency", "Uniqueness", "Competences", "Accuracy"],
+    alertItems: ["Service Now", "Email"],
+    appName: "",
     dataBaseList: [],
     tableNames: [],
     snackbar: false,
-    ruleName: '',
-    ruleDescription: '',
-    connection: '',
+    ruleName: "",
+    ruleDescription: "",
+    connection: "",
     connectionText: "Connected Successfully",
-    database: '',
-    table:'',
-    validationQuery: '',
-    validationLabel: '',
-    target: '',
-    threshold:'',
-    frequency: '',
-    ownerName: '',
+    database: "",
+    table: "",
+    validationQuery: "",
+    validationLabel: "",
+    target: "",
+    threshold: "",
+    frequency: "",
+    ownerName: "",
     dataBaseObj: {},
-    time: new Date()
+    time: new Date(),
+    alert: ""
   }),
- components: {
-    Timeselector
+  components: {
+    Popup,
+    Schedule
+  },
+  computed: {
+    ...mapState({
+      connectionList: state => state.allConnections
+    })
   },
   methods: {
     async fetchList() {
-      this.dataBaseList= [];
+      this.dataBaseList = [];
       this.tableNames = [];
-      this.dataBaseObj= await connectList.filter((conn)=>conn.name==this.connection);
+      this.dataBaseObj = await connectList.filter(
+        conn => conn.name == this.connection
+      );
       this.dataBaseList.push(this.dataBaseObj[0].database[0].name);
     },
     onConnectionChange() {
-      this.dataBaseList= [];
-      this.tableNames= [];
+      this.dataBaseList = [];
+      this.tableNames = [];
     },
     onDBChange() {
-      this.tableNames= [];
+      this.tableNames = [];
       console.log(this.dataBaseObj[0].database[0].tables);
-      this.tableNames = this.dataBaseObj[0].database[0].tables;
+      let tableList = this.dataBaseObj[0].database[0].tables;
+      tableList.forEach(table => this.tableNames.push(table.name));
     },
     createJob() {
-
       const validationObject = {
-        id: "v"+this.$store.state.jobId,
-        name: this.ruleName,
-        description: this.ruleDescription,
-        connection: this.connection,
-        database: this.database,
-        table: this.table,
-        validationQuery: this.validationQuery,
-        label: this.validationLabel,
-        targetDQI: this.target,
-        threshold:this.threshold,
-        frequency: this.frequency,
-        ownerName: this.ownerName,
+        id: "v" + this.$store.state.jobId,
+        "Application Name": this.appName,
+        "Rule Name": this.ruleName,
+        "Rule Description": this.ruleDescription,
+        "Rule Owner": this.ownerName,
+        "Rule Connection": this.connection,
+        Database: this.database,
+        Table: this.table,
+        "Validation Query": this.validationQuery,
+        Label: this.validationLabel,
+        "Target DQI": this.target,
+        Threshold: this.threshold,
+        Frequency: this.frequency,        
+        Alert: this.alert
       };
-      console.log(validationObject)
       this.$store.dispatch("addValidation", validationObject);
       this.$router.push("/validation/list");
+    },
+    addSchedule(obj) {
+      const filters = this.$options.filters;
+      this.frequency =`Start:${filters.formatDate(obj.startDatetime)} End:${filters.formatDate(obj.endDatetime)}`;
     }
   }
 };
