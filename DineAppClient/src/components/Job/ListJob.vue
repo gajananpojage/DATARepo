@@ -5,16 +5,16 @@
         <v-col class="d-flex" cols="10" sm="6">
           <v-select
             :items="jobList"
-            label="Job Name:"
-            item-text="name"
-            item-value="jobId"
+            label="Rule Name:"
+            item-text="Rule Name"
+            item-value="JobId"
             @change="onJobChanged"
             v-model="job"
             dense
             outlined
           ></v-select> </v-col
         ><v-col class="d-flex" cols="2" sm="1"
-          ><v-btn text @click="clearFilter" class="success mx-0 mt-3"
+          ><v-btn text @click="clearFilter" class="success mx-0 mt-1"
             >Reset</v-btn
           ></v-col
         ></v-row
@@ -22,47 +22,57 @@
       <v-layout row justify-start class="mb-3">
         <v-tooltip top>
           <template v-slot:activator="{ on }">
-            <v-btn small text color="grey" @click="sortBy('name')" v-on="on">
+            <v-btn
+              small
+              text
+              color="grey"
+              @click="sortBy('Rule Name')"
+              v-on="on"
+            >
               <v-icon small left>queue</v-icon>
-              <span class="caption ">By Job Name</span>
+              <span class="caption ">By Rule Name</span>
             </v-btn>
           </template>
-          <span>Sort by Job Name</span>
+          <span>Sort by Rule Name</span>
         </v-tooltip>
         <v-tooltip top>
           <template v-slot:activator="{ on }">
-            <v-btn small text color="grey" @click="sortBy('status')" v-on="on">
+            <v-btn small text color="grey" @click="sortBy('Status')" v-on="on">
               <v-icon small left>sort</v-icon>
-              <span class="caption">By Job Status</span>
+              <span class="caption">By Status</span>
             </v-btn>
           </template>
-          <span>Sort by Job Status</span>
+          <span>Sort by Status</span>
         </v-tooltip>
       </v-layout>
 
       <v-card
         flat
         v-for="job in selectedJobs"
-        :key="job.jobId"
-        @click="onClick(job.jobId)"
+        :key="job.JobId"
+        @click="onClick(job.JobId)"
       >
-        <v-layout row wrap :class="`pa-3 job ${job.status}`">
-          <v-flex xs12 md4>
-            <div class="caption grey--text">Job Name</div>
-            <div>{{ job.name }}</div>
+        <v-layout row wrap :class="`pa-3 job ${job.Status}`">
+          <v-flex xs6 sm4 md3>
+            <div class="caption grey--text">Application Name</div>
+            <div>{{ job["Application Name"] }}</div>
+          </v-flex>
+          <v-flex xs6 sm4 md3>
+            <div class="caption grey--text">Rule Name</div>
+            <div>{{ job["Rule Name"] }}</div>
           </v-flex>
           <v-flex xs6 sm4 md2>
             <div class="caption grey--text">Source Connection</div>
-            <div>{{ job.sourceConnection }}</div>
+            <div>{{ job["Source Connection"] }}</div>
           </v-flex>
           <v-flex xs6 sm4 md2>
             <div class="caption grey--text">Target Connection</div>
-            <div>{{ job.targetConnection }}</div>
+            <div>{{ job["Target Connection"] }}</div>
           </v-flex>
           <v-flex xs2 sm4 md2>
             <div class="right">
-              <v-chip small :class="`${job.status} white--text my-2 caption`">{{
-                job.status
+              <v-chip small :class="`${job.Status} white--text my-2 caption`">{{
+                job.Status
               }}</v-chip>
             </div>
           </v-flex>
@@ -92,7 +102,7 @@ export default {
     },
     async onJobChanged(jobId) {
       if (jobId) {
-        let job = await this.jobList.filter(p => p.jobId === jobId);
+        let job = await this.jobList.filter(p => p.JobId === jobId);
         this.selectedJobs = job;
       }
     },
