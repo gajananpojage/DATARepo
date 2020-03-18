@@ -14,13 +14,15 @@
 </template>
 <script>
 export default {
+
    data() {
     return {
       activeTab: `/profiling`,
       tabs: [
         { id: 1, name: "Create", route: `/profiling` },
         { id: 2, name: "List", route: `/profiling/list` },
-        { id: 3, name: "Result", route: `/profiling/result` }
+        { id: 3, name: "Rule Info", route: `/profiling/result` },
+        { id: 4, name: "Output", route: `/profiling/output` }
       ]
     };
   }
