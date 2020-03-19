@@ -2,19 +2,7 @@
   <div class="dashboard">
     <h3 class="subheading grey--text">Application OnBoarding</h3>
     <v-container class="my-5">
-      <v-form class="px-3" ref="form" v-model="valid">
-        <v-row>
-          <v-col cols="10">
-            <v-select
-                    :items="source"
-                    v-model="selectedSource"
-                    label="Select a Source:"
-                    required
-                    :rules="valueRequiredRules"
-                    @change="getSelectedValue"
-            ></v-select>
-          </v-col>
-        </v-row>
+      <v-form class="px-3" ref="form" v-model="valid">    
         <v-row v-if="showRelatedField">
           <v-col cols="10">
             <v-text-field
@@ -26,7 +14,7 @@
             ></v-text-field>
           </v-col>
         </v-row>
-        <v-row v-if="showRelatedField">
+        <v-row>
           <v-col cols="10">
             <v-text-field
                     v-model="applicationDescription"
@@ -37,7 +25,7 @@
             ></v-text-field>
           </v-col>
         </v-row>
-        <v-row v-if="showRelatedField">
+        <v-row>
           <v-col cols="5">
             <v-text-field
                     v-model="applicationOwnerName"
@@ -56,7 +44,7 @@
             ></v-text-field>
             </v-col>
         </v-row>
-        <v-row v-if="showRelatedField">
+        <v-row>
           <v-col cols="10">
             <v-select
                     :items="sendNotification"
@@ -68,7 +56,7 @@
           </v-col>
         </v-row>
 
-        <v-row v-if="showRelatedField">
+        <v-row>
           <v-col cols="1">
             <v-btn text @click="submit" class="mx-0 mt-3 bg-color text-white"
             >Submit</v-btn
@@ -88,8 +76,6 @@ export default {
   data: () => ({
     source: ["RDS", "OPSI", "GOLD", "DIAL"],
     sendNotification: ["Service Now", "Email"],
-    showRelatedField: false,
-    selectedSource: '',
     applicationName: '',
     applicationOwnerName: '',
     applicationDescription: '',
@@ -120,11 +106,6 @@ export default {
   computed: {},
   created() {},
   methods: {
-    getSelectedValue() {
-      if (this.selectedSource === 'RDS') {
-        this.showRelatedField = true;
-      }
-    },
     submit() {
       if (this.$refs.form.validate()) {
         this.snackbar = true;
@@ -136,6 +117,7 @@ export default {
           'toolName': this.toolName
         };
         console.log(this.formObj);
+         this.$store.dispatch("addApplication", this.applicationName);
         this.$router.push('/reconciliation');
       }
     }
