@@ -47,17 +47,17 @@
             <Popup />
           </v-col>
           <v-col cols="2">
-            <v-btn text @click="snackbar = true" class="primary mx-2 btn btn-text">Test</v-btn
+            <v-btn text @click="snackbar = true" class="primary mx-2 btn btn-text ml-12">Test</v-btn
             ><v-snackbar v-model="snackbar">
               {{ connectionText }}
-              <v-btn color="green" text @click="snackbar = false">
+              <v-btn color="yellow" text @click="snackbar = false">
                 Close
               </v-btn>
             </v-snackbar>
           </v-col>
         </v-row>
         <v-row>
-          <v-btn text @click="fetchList" class="success mx-0 mt-3"
+          <v-btn text @click="fetchList" class="bg-color text-white mx-0 mt-3"
             >Fetch List</v-btn
           ></v-row
         >
@@ -144,7 +144,7 @@
             </v-col>
           </v-row>
           <v-row>
-            <v-btn text @click="createJob" class="success mx-0 mt-3"
+            <v-btn text @click="createJob" class="bg-color text-white mx-0 mt-3"
               >Create</v-btn
             ></v-row
           >
@@ -225,7 +225,7 @@ export default {
         Label: this.validationLabel,
         "Target DQI": this.target,
         Threshold: this.threshold,
-        Frequency: this.frequency,        
+        Frequency: this.frequency,
         Alert: this.alert
       };
       this.$store.dispatch("addValidation", validationObject);
