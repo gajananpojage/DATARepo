@@ -15,7 +15,7 @@
                             class="bg-color"
                             dark
                             flat>
-                        <v-toolbar-title>DINE APPLICATION</v-toolbar-title>
+                        <v-toolbar-title>Welcome</v-toolbar-title>
                         <v-spacer></v-spacer>
                     </v-toolbar>
                     <v-card-text>
