@@ -1,38 +1,53 @@
 [
     {
-        "name":"Hive RDS",
-        "database":[
+      "name": "Hive RDS",
+      "database": [
+        {
+          "name": "portalpipelinetestdb",
+          "tables": [
             {
-                "name":"Hive DB",
-                "tables":[
-                           {"name":"PeopleSoft", "columns":["id","name","description"]},
-                           {"name":"customerProfile", "columns":["id","customerName","location"]},
-                           {"name":"resultPool", "columns":["resultId","name","creationDate"]}
-                        ]
-            }   ]        
+              "name": "portalpipelinetestdb_payments",
+              "columns": ["id", "BANKACCOUNT", "PROCESSINGDATE","PROCESSINGTIME"]
+            },
+            {
+              "name": "portalpipelinetestdb_user_payments",
+              "columns": ["id", "PROCESSINGDATE", "DEBETCREDIT"]
+            }
+          ]
+        }
+      ]
     },
     {
-     "name":"Hive Test RDS ",
-     "database":[
+      "name": "Hive Test RDS ",
+      "database": [
         {
-            "name":"Test DB",
-            "tables":[
-                       {"name":"Skills", "columns":["skillId","name","details"]},
-                       {"name":"Learning", "columns":["id","grade","score"]},
-                       {"name":"Capability", "columns":["id","name","creationDate"]}
-                    ]
-        }  ]        
+          "name": "sap_ecc",
+          "tables": [
+            { "name": "SAP_ECC_ANLP", "columns": ["OAR_ID", "MANDT", "BUKRS","PSTBEG"] },
+            {
+              "name": "SAP_ECC_ANLZ",
+              "columns": ["OAR_ID", "GJAHR", "SAFAG", "ZUCOD","PSTBEG"]
+            },
+            { "name": "SAP_ECC_ANLC", "columns": ["OAR_ID", "MANDT", "ANUPD"] }
+          ]
+        }
+      ]
     },
     {
-     "name":"ADLS RDS",
-     "database":[
+      "name": "ADLS RDS",
+      "database": [
         {
-            "name":"ADLS DB",
-            "tables":[
-                       {"name":"Earning", "columns":["id","name","details"]},
-                       {"name":"HealthCare", "columns":["id","grade","score"]},
-                       {"name":"Education", "columns":["id","name","creationDate"]}
-                    ]
-        }   ]        
+          "name": "sap_ecc",
+          "tables": [
+            { "name": "SAP_ECC_ANLP", "columns": ["OAR_ID", "MANDT", "BUKRS","PSTBEG"] },
+            {
+              "name": "SAP_ECC_ANLZ",
+              "columns": ["OAR_ID", "GJAHR", "SAFAG", "ZUCOD","PSTBEG"]
+            },
+            { "name": "SAP_ECC_ANLC", "columns": ["OAR_ID", "MANDT", "ANUPD"] }
+          ]
+        }
+      ]
     }
- ]
+  ]
+  
