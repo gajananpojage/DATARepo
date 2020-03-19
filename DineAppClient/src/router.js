@@ -1,6 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Onboarding from './views/Onboarding.vue';
+import OnboardingApplication from "./components/Onboarding/OnboardingApplication";
+import ApplicationList from "./components/Onboarding/ApplicationList";
 
 import Reconciliation from './views/Reconciliation.vue';
 import CreateJob from './components/Job/CreateJob';
@@ -16,6 +18,7 @@ import DataProfiling from './views/DataProfiling.vue';
 import CreateProfile from './components/Profile/CreateProfile';
 import ListProfile from './components/Profile/ListProfile';
 import ResultProfile from './components/Profile/ResultProfile';
+
 import Output from './components/Output';
 import Login from "./views/Login";
 import Approval from "./views/Approval";
@@ -40,7 +43,17 @@ export default new Router({
     {
       path: '/onboarding',
       name: 'onboarding',
-      component: Onboarding
+      component: Onboarding,
+      children: [
+        {
+          path: "",
+          component: OnboardingApplication
+        },
+        {
+          path: "list",
+          component: ApplicationList
+        }
+      ]
     },
     {
       path: '/reconciliation',
@@ -66,7 +79,7 @@ export default new Router({
       ]
     },
     {
-      path: '/profiling',      
+      path: '/profiling',
       name: 'profiling',
       component: DataProfiling,
       children: [
