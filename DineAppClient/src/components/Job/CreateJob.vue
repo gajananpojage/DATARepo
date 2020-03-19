@@ -4,13 +4,14 @@
       <v-form class="px-3" ref="form" v-model="valid">
         <v-row>
           <v-col cols="10">
-            <v-text-field
-              v-model="appName"
-              label="Application Name: "
-              :rules="nameRules"
-              :counter="30"
-              required
-            ></v-text-field>
+            <v-select
+                    :items="applicationList"
+                    v-model="appName"
+                    label="Select an Application:"
+                    required
+                    :rules="valueRequiredRules"
+                    @change="getSelectedApp"
+            ></v-select>
           </v-col>
         </v-row>
         <v-row>
@@ -191,7 +192,8 @@ export default {
   }),
   computed: {
     ...mapState({
-      connectionList: state => state.allConnections
+      connectionList: state => state.allConnections,
+      applicationList: state=>state.applicationList
     })
   },
   components: { Popup, Schedule },
@@ -227,6 +229,9 @@ export default {
       this.scheduleVal = `Start:${filters.formatDate(
         obj.startDatetime
       )} End:${filters.formatDate(obj.endDatetime)}`;
+    },
+     getSelectedApp(val) {
+      this.appName= val;
     }
   }
 };
