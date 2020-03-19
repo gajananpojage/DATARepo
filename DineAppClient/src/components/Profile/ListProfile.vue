@@ -1,6 +1,6 @@
 <template>
   <div class="dashboard">
-    
+
     <v-container class="my-5" v-if="profileList">
       <v-row>
         <v-col class="d-flex" cols="6" sm="3">
@@ -23,10 +23,10 @@
             @change="onProfileChanged"
             dense
             outlined
-          ></v-select></v-col><v-col class="d-flex" cols="2" sm="1"><v-btn text @click="clearFilter" class="success mx-0 mt-1"
+          ></v-select></v-col><v-col class="d-flex" cols="2" sm="1"><v-btn text @click="clearFilter" class="cancel-btn mx-0 mt-1"
             >Reset</v-btn
           ></v-col>
-          
+
           </v-row>
       <v-layout row justify-start class="mb-3">
         <v-tooltip top>
@@ -107,7 +107,7 @@ export default {
         let labelValue=await this.labelList.find((item)=>item.id==id);
         profile = await this.profileList.filter(p => p["Profile Group"] === labelValue.name);
       } else {
-        profile = await this.profileList.filter(p => p.id === id);       
+        profile = await this.profileList.filter(p => p.id === id);
 
       }
       this.selectedProfile = profile;
@@ -118,11 +118,11 @@ export default {
     },
     onGroupChanged(groupName) {
        if (groupName=="Level") {
-       this.optionText="name"  
+       this.optionText="name"
        this.optionValues= this.labelList;
        console.log(this.optionValues);
       } else {
-        this.optionText="Rule Name";  
+        this.optionText="Rule Name";
         this.optionValues = this.profileList;
       }
     },
