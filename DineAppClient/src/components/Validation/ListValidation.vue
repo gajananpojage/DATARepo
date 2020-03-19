@@ -1,6 +1,6 @@
 <template>
   <div class="dashboard">
-    
+
     <v-container class="my-5" v-if="validationList">
       <v-row>
         <v-col class="d-flex" cols="6" sm="3">
@@ -23,10 +23,10 @@
             @change="onValidationChanged"
             dense
             outlined
-          ></v-select></v-col><v-col class="d-flex" cols="2" sm="1"><v-btn text @click="clearFilter" class="success mx-0 mt-1"
+          ></v-select></v-col><v-col class="d-flex" cols="2" sm="1"><v-btn text @click="clearFilter" class="cancel-btn mx-0 mt-1"
             >Reset</v-btn
           ></v-col>
-          
+
           </v-row>
       <v-layout row justify-start class="mb-3">
         <v-tooltip top>
@@ -109,7 +109,7 @@ export default {
         let labelValue=await this.labelList.find((item)=>item.id==id);
         validation = await this.validationList.filter(p => p.Label === labelValue.name);
       } else {
-        validation = await this.validationList.filter(p => p.id === id);       
+        validation = await this.validationList.filter(p => p.id === id);
 
       }
       this.selectedValidation = validation;
@@ -120,10 +120,10 @@ export default {
     },
     onGroupChanged(groupName) {
        if (groupName=="Label") {
-       this.optionText="name"; 
+       this.optionText="name";
        this.optionValues= this.labelList
       } else {
-        this.optionText="Rule Name"; 
+        this.optionText="Rule Name";
         this.optionValues = this.validationList;
       }
     },
