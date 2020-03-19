@@ -4,11 +4,13 @@
       <v-form class="px-3" ref="form" lazy-validation>
         <v-row>
           <v-col cols="10">
-            <v-text-field
-              v-model="appName"
-              label="Application Name: "
-              required
-            ></v-text-field>
+             <v-select
+                    :items="applicationList"
+                    v-model="appName"
+                    label="Select an Application:"
+                    required
+                    @change="getSelectedApp"
+            ></v-select>
           </v-col>
         </v-row>
         <v-row>
@@ -189,7 +191,8 @@ export default {
   },
   computed: {
     ...mapState({
-      connectionList: state => state.allConnections
+      connectionList: state => state.allConnections,
+      applicationList: state=>state.applicationList
     })
   },
   methods: {
@@ -234,6 +237,9 @@ export default {
     addSchedule(obj) {
       const filters = this.$options.filters;
       this.frequency =`Start:${filters.formatDate(obj.startDatetime)} End:${filters.formatDate(obj.endDatetime)}`;
+    },
+     getSelectedApp(val) {
+      this.appName= val;
     }
   }
 };
