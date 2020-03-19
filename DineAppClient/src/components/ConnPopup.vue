@@ -42,18 +42,23 @@
             required
           ></v-text-field>
           <v-spacer></v-spacer>
-
+          <v-btn
+                  text
+                  @click="cancel"
+                  class="cancel-btn mx-0 mt-3"
+          >Cancel</v-btn
+          >
           <v-btn
             text
             @click="submit"
-            class="success mx-1 mt-3"
+            class="bg-color text-white mx-1 mt-3 ml-4"
 
             >Create</v-btn
           >
           <v-btn
             text
             @click="snackbar = true"
-            class="secondary mx-1 mt-3"
+            class="bg-color text-white mx-1 mt-3 ml-4"
             >Test</v-btn
           >
           <v-snackbar v-model="snackbar">
@@ -62,12 +67,6 @@
               Close
             </v-btn>
           </v-snackbar>
-          <v-btn
-            text
-            @click="cancel"
-            class="primary mx-0 mt-3"
-            >Cancel</v-btn
-          >
         </v-form>
       </v-card-text>
     </v-card>
