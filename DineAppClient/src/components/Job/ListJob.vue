@@ -14,7 +14,7 @@
             outlined
           ></v-select> </v-col
         ><v-col class="d-flex" cols="2" sm="1"
-          ><v-btn text @click="clearFilter" class="success mx-0 mt-1"
+          ><v-btn text @click="clearFilter" class="cancel-btn mx-0 mt-1"
             >Reset</v-btn
           ></v-col
         ></v-row
