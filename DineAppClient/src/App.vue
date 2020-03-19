@@ -29,8 +29,8 @@ export default {
     this.$store.dispatch("setConnections");
     this.$store.dispatch("setJobs");
     this.$store.dispatch("setValidations");
-    this.$store.dispatch("setProfiles");   
-    
+    this.$store.dispatch("setProfiles");
+
   },
     mounted() {
     // eslint-disable-next-line no-unused-vars
@@ -53,11 +53,35 @@ export default {
     color: #00857a !important;
     caret-color: #00857a !important;
   }
+
+  .my-app.v-application .primary {
+    background-color: #00857a !important;
+    border-color: #00857a !important;
+  }
+
   .bg-color {
     background-color:#00857a !important;
   }
 
   .text-white {
     color: #fff !important;
+  }
+
+  .cancel-btn {
+    color: #00716b;
+    border: 1px solid #c0d1d0;
+    background-color: #edf7f7;
+    min-width: 100px;
+    margin-right: 20px;
+  }
+
+  .my-app.v-application .green--text.text--darken-1 {
+    color: #00857a !important;
+    caret-color: #00857a !important;
+  }
+
+  .my-app.v-application .accent {
+    background-color: #83bfba !important;
+    border-color: #83bfba !important;
   }
 </style>
