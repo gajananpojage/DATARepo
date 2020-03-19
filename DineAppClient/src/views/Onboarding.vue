@@ -3,7 +3,7 @@
     <h3 class="subheading grey--text">Application OnBoarding</h3>
     <v-container class="my-5">
       <v-form class="px-3" ref="form" v-model="valid">    
-        <v-row v-if="showRelatedField">
+        <v-row>
           <v-col cols="10">
             <v-text-field
                     v-model="applicationName"
