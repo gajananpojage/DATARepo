@@ -70,9 +70,8 @@
           >
 
           <v-spacer></v-spacer>
-
-          <v-btn text @click="submit" class="success mx-1 mt-3">Schedule</v-btn>
-          <v-btn text @click="cancel" class="primary mx-0 mt-3">Cancel</v-btn>
+          <v-btn text @click="cancel" class="cancel-btn mx-0 mt-3">Cancel</v-btn>
+          <v-btn text @click="submit" class="primary mx-1 mt-3 ml-12">Schedule</v-btn>
         </v-form>
       </v-card-text>
     </v-card>
