@@ -13,6 +13,7 @@ const debug = process.env.NODE_ENV !== 'production'
 const state = {
   jobId: 1,
   allJobs: [],
+  appDataList: [],
   allValidationRules: [],
   allProfiles: [],
   activeItemId:'',
@@ -22,6 +23,7 @@ const state = {
 // getters
 const getters = {
   allJobs: state => state.allJobs,
+  appDataList: state => state.appDataList,
   allValidationRules: state => state.allValidationRules,
   allProfiles: state => state.allProfiles,
   allConnections: state=>state.allConnections,
@@ -32,7 +34,10 @@ const actions = {
   addJob({ commit }, job) {
     commit(types.ADD_JOB, {
       job
-    })   
+    })
+  },
+  onboardApp({commit}, value) {
+    commit('onboardApp', value)
   },
   addValidation({ commit }, value){
     commit('addValidation',value)
@@ -57,7 +62,7 @@ const actions = {
   },
   unsetActiveItem(context){
     context.commit('unsetActiveItem')
-  }, 
+  },
   setConnections(context){
     context.commit('setConnections');
   },
@@ -74,6 +79,9 @@ const mutations = {
   [types.ADD_JOB](state, { job }) {
       state.allJobs.unshift(job)
     },
+  onboardApp(state, obj) {
+    state.appDataList.unshift(obj)
+  },
     incrementJobId(state) {
       state.jobId++
     },
@@ -88,7 +96,7 @@ const mutations = {
     },
     addValidation(state, obj) {
       state.allValidationRules.unshift(obj)
-    },    
+    },
     addProfile(state, obj) {
       state.allProfiles.unshift(obj)
     },
