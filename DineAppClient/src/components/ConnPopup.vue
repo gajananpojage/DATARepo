@@ -47,7 +47,7 @@
             text
             @click="submit"
             class="success mx-1 mt-3"
- 
+
             >Create</v-btn
           >
           <v-btn
@@ -58,7 +58,7 @@
           >
           <v-snackbar v-model="snackbar">
             Connected successfully
-            <v-btn color="green" text @click="snackbar = false">
+            <v-btn color="yellow" text @click="snackbar = false">
               Close
             </v-btn>
           </v-snackbar>
