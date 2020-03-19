@@ -52,11 +52,11 @@
             <Popup />
           </v-col>
           <v-col cols="2">
-            <v-btn text @click="snackbar = true" class="primary  mx-2 btn btn-text "
+            <v-btn text @click="snackbar = true" class="primary  mx-2 btn btn-text ml-12"
               >Test</v-btn
             ><v-snackbar v-model="snackbar">
               {{ connectionText }}
-              <v-btn color="green" text @click="snackbar = false">
+              <v-btn color="yellow" text @click="snackbar = false">
                 Close
               </v-btn>
             </v-snackbar>
@@ -76,11 +76,11 @@
             <Popup />
           </v-col>
           <v-col cols="2">
-            <v-btn text @click="snackbar = true" class="primary mx-2 btn btn-text"
+            <v-btn text @click="snackbar = true" class="primary mx-2 btn btn-text ml-12"
               >Test</v-btn
             ><v-snackbar v-model="snackbar">
               {{ connectionText }}
-              <v-btn color="green" text @click="snackbar = false">
+              <v-btn color="yellow" text @click="snackbar = false">
                 Close
               </v-btn>
             </v-snackbar>
@@ -152,8 +152,7 @@
             <v-btn
               text
               @click="createJob"
-              class="success mx-0 mt-3"
-              :class="{ red: !valid, green: valid }"
+              class="bg-color text-white mx-0 mt-3 ml-12"
               >Create</v-btn
             ></v-col
           ></v-row
@@ -237,12 +236,5 @@ export default {
 @import "../../styles/styles.scss";
 .row {
   margin-top: -10px;
-}
-.cancel-btn {
-  color: #00716b;
-  border: 1px solid #c0d1d0;
-  background-color: #edf7f7;
-  min-width: 100px;
-  margin-right: 20px;
 }
 </style>
