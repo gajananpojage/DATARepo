@@ -22,6 +22,9 @@
         <!--<v-toolbar-title v-if="loggedIn && $route.path === ''">
           Data Viewer
        </v-toolbar-title>-->
+       <v-layout align-center justify-end v-if="!loggedIn">
+          <v-toolbar-title  class="white--text">Digitized Information Management Ecosysyem</v-toolbar-title>
+        </v-layout>
        <v-spacer></v-spacer>
    <v-menu offset-y v-if="loggedIn && loggedUser === 'admin'">
       <template v-slot:activator="{ on }">
@@ -53,7 +56,7 @@
           <v-avatar size="100">
             <img class="text-lg-center" src="/data_icon.jpg">
           </v-avatar>
-          <p class="white--text subheading mt-1">Data Application</p>
+          <p class="white--text subheading mt-1">DIME Application</p>
         </v-flex>
         <v-flex class="mt-4 mb-3">
         </v-flex>
