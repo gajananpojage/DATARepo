@@ -61,7 +61,7 @@
             </v-col>
           </v-row>
           <v-row>
-            <v-btn text @click="getNextView" class="success mx-0 mt-3"
+            <v-btn text @click="getNextView" class="bg-color text-white mx-0 mt-3"
               >Next</v-btn
             ></v-row
           >
@@ -84,7 +84,7 @@
                 >Test</v-btn
               ><v-snackbar v-model="snackbar">
                 {{ connectionText }}
-                <v-btn color="green" text @click="snackbar = false">
+                <v-btn color="yellow" text @click="snackbar = false">
                   Close
                 </v-btn>
               </v-snackbar>
@@ -123,7 +123,7 @@
               <v-text-field
                 v-model="target"
                 label="Target DQI:"
-                type="number"             
+                type="number"
                 required
               ></v-text-field>
             </v-col> </v-row
@@ -211,7 +211,7 @@ export default {
       v => !!v || "Name is required",
       v => (v && v.length <= 30) || "Rule name must be less than 30 characters"
     ]
-   
+
   }),
   components: {
     Schedule,
