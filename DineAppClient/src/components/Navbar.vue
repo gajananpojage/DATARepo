@@ -129,9 +129,8 @@ export default {
 }
 .pink-top {
   background-color:#00857a!important
-} 
+}
 .dark-bg .theme--light.v-sheet {
-
-   background-color: #1976d2;
+   background-color: #00857a !important;
 }
 </style>
