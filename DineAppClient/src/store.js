@@ -16,14 +16,16 @@ const state = {
   allValidationRules: [],
   allProfiles: [],
   activeItemId:'',
-  allConnections: []
+  allConnections: [],
+  applicationList: [],
 }
 // getters
 const getters = {
   allJobs: state => state.allJobs,
   allValidationRules: state => state.allValidationRules,
   allProfiles: state => state.allProfiles,
-  allConnections: state=>state.allConnections
+  allConnections: state=>state.allConnections,
+  applicationList: state=> state.applicationList
 }
 // actions
 const actions = {
@@ -61,6 +63,9 @@ const actions = {
   },
   addConnection({commit},value){
     commit('addConnection',value)
+  },
+  addApplication({commit},value){
+    commit('addApplication',value)
   }
 }
 
@@ -98,6 +103,9 @@ const mutations = {
     },
     addConnection(state,obj){
       state.allConnections.unshift(obj)
+    },
+    addApplication(state,obj){
+      state.applicationList.unshift(obj)
     }
   }
 // one store for entire application
